@@ -23,7 +23,7 @@ jobs:
           context: .
           tags: app-test:latest
       - name: Run tests
-        uses: docker://app-test:latest
+        run: docker run --rm app-test:latest
   build:
     runs-on: ubuntu-24.04
     needs: tests
