@@ -1,7 +1,7 @@
 FROM golang:1.26 AS builder
 
 WORKDIR /app
-COPY app.go go.mod .
+COPY . .
 RUN go build -o app .
 
 # multi stage docker
