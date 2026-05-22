@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
-          dockerfile: DockerfileTest
+          file: DockerfileTest
           context: .
           tags: app-test:latest
       - name: Run tests
@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
-          dockerfile: Dockerfile
+          file: Dockerfile
           context: .
           tags: app:latest
