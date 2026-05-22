@@ -8,16 +8,20 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-24.04
+    env:
+      image: "app-test:latest"
     steps:
       - name: checkout
         uses: actions/checkout@v6
       - name: build
-        run: docker build -t app-test:latest -f DockerfileTest .
+        run: docker build -t ${{ env.image }} -f DockerfileTest .
       - name: run tests
-        run: docker run --rm app-test:latest
+        run: docker run --rm ${{ env.image }}
   build:
     runs-on: ubuntu-24.04
     needs: tests
+    env:
+      image: "app:${{ github.sha }}"
     steps:
       - name: checkout
         uses: actions/checkout@v6
@@ -29,6 +33,6 @@ jobs:
           push: false
           file: Dockerfile
           context: .
-          tags: app:latest
+          tags: ${{ env.image }}
 
 
